@@ -6,10 +6,11 @@ if [ "${CLAUDE_CODE_REMOTE:-}" != "true" ]; then
   exit 0
 fi
 
-# No package dependencies found in this repo.
-# Add dependency installation commands here as the project grows.
-# Examples:
-#   npm install
-#   pip install -r requirements.txt
+# Install browser-use and dependencies
+pip install browser-use --ignore-installed PyJWT -q
+
+# Chromium is pre-installed at /opt/pw-browsers — no need to run playwright install
+export PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers
+echo "PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers" >> "$CLAUDE_ENV_FILE"
 
 echo "Session start hook completed."
