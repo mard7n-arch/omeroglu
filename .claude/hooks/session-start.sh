@@ -6,8 +6,8 @@ if [ "${CLAUDE_CODE_REMOTE:-}" != "true" ]; then
   exit 0
 fi
 
-# Install browser-use and dependencies
-pip install browser-use --ignore-installed PyJWT -q
+# Install dependencies
+pip install -r "$CLAUDE_PROJECT_DIR/requirements.txt" --ignore-installed PyJWT -q
 
 # Chromium is pre-installed at /opt/pw-browsers — no need to run playwright install
 export PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers
